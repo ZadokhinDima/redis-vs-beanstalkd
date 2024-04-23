@@ -1,0 +1,36 @@
+version: '3'
+services:
+  beanstalkd:
+    image: schickling/beanstalkd
+    volumes:
+      - ./data:/var/lib/beanstalkd
+    ports:
+      - 11300:11300
+
+  redis1:
+    image: redis
+    volumes:
+      - ./redis1.conf:/usr/local/etc/redis/redis.conf
+      - ./redis1_data:/var/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+
+  redis2:
+    image: redis
+    volumes:
+      - ./redis2.conf:/usr/local/etc/redis/redis.conf
+      - ./redis2_data:/var/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6380:6379
+
+      
+  redis3:
+    image: redis
+    volumes:
+      - ./redis3.conf:/usr/local/etc/redis/redis.conf
+      - ./redis3_data:/var/redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    ports:
+      - 6381:6379
